@@ -28,7 +28,7 @@ const About = ({ children, offset }) => (
       <SVG icon="box" width={6} fill={colors.orange} left="10%" top="10%" />
       <SVG icon="box" width={12} fill={colors['grey-darkest']} left="20%" top="30%" />
       <SVG icon="hexa" width={8} stroke={colors['grey-darkest']} left="80%" top="70%" />
-    </Divider>
+    </Divider>ti
     <Content speed={0.4} offset={offset}>
       <Inner>{children}</Inner>
     </Content>

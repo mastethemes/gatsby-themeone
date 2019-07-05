@@ -6,6 +6,7 @@ import { Parallax } from 'react-spring/renderprops-addons.cjs'
 // Components
 import Layout from '../components/Layout'
 import ProjectCard from '../components/ProjectCard'
+import Menu from '../components/Menu'
 
 // Elements
 import Inner from '../elements/Inner'
@@ -61,6 +62,7 @@ const Index = () => (
   <>
     <Layout />
     <Parallax pages={5}>
+      <Menu />
       <Hero offset={0}>
         <BigTitle>
           Hello, <br /> I'm John Doe.
