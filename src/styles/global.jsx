@@ -1,4 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components"
+import("../assets/styles/theme.scss")
 
 const GlobalStyle = createGlobalStyle`
   *, *:before, *:after {
