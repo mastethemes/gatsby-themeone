@@ -1,11 +1,20 @@
 import React from "react"
 import styled from "styled-components"
 import { Grid } from "@material-ui/core"
+import { ArrowForwardIos } from "@material-ui/icons"
 import sea from "../images/sea.jpg"
 
 // Components
 import Layout from "../components/Layout"
-import { Title, BigTitle, Subtitle, BigTitleThin } from "../elements/Titles"
+import {
+    Title,
+    BigTitle,
+    Subtitle,
+    BigTitleThin,
+    SmallLabel,
+    MediumLabel,
+    BigLabel
+} from "../elements/Titles"
 
 const ImgAnimated = styled.div`
     background-image: url(${sea});
@@ -51,16 +60,44 @@ const Product = () => (
                     alignItems="center"
                     justify="center"
                 >
-                    <Grid container xs={8}>
+                    <Grid container spacing={4} xs={8}>
                         <Grid item xs={4}>
-                            <div>min. price</div>
-                            <div>
+                            <SmallLabel className="textColor2">
+                                min. price
+                            </SmallLabel>
+                            <BigLabel className="textColor2">
                                 1,290 <span>€</span>
-                            </div>
-                            <div>
-                                <strong>7 days tour</strong> on 2 people
-                            </div>
+                            </BigLabel>
+                            <MediumLabel className="textColor2">
+                                <strong>7 days tour</strong> on 2 people{" "}
+                                <ArrowForwardIos />
+                            </MediumLabel>
                         </Grid>
+                        <Grid item xs={4}>
+                            <SmallLabel className="textColor2">
+                                5 stars
+                            </SmallLabel>
+                            <BigLabel className="textColor2">
+                                <string>26</string>
+                            </BigLabel>
+                            <MediumLabel className="textColor2">
+                                <strong>hotels</strong> to choice{" "}
+                                <ArrowForwardIos />
+                            </MediumLabel>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <SmallLabel className="textColor2">
+                                flight date
+                            </SmallLabel>
+                            <BigLabel className="textColor2">
+                                <strong>18</strong>
+                            </BigLabel>
+                            <MediumLabel className="textColor2">
+                                <strong>jule</strong> or later{" "}
+                                <ArrowForwardIos />
+                            </MediumLabel>
+                        </Grid>
+
                         <Grid item xs={4}></Grid>
                         <Grid item xs={4}></Grid>
                     </Grid>
