@@ -60,7 +60,7 @@ const Product = () => (
                     alignItems="center"
                     justify="center"
                 >
-                    <Grid container spacing={4} xs={8}>
+                    <Grid container item spacing={4} xs={8}>
                         <Grid item xs={4}>
                             <SmallLabel className="textColor2">
                                 min. price
@@ -78,7 +78,7 @@ const Product = () => (
                                 5 stars
                             </SmallLabel>
                             <BigLabel className="textColor2">
-                                <string>26</string>
+                                <strong>26</strong>
                             </BigLabel>
                             <MediumLabel className="textColor2">
                                 <strong>hotels</strong> to choice{" "}
