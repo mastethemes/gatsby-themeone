@@ -5,7 +5,21 @@ const pathPrefix = config.pathPrefix === "/" ? "" : config.pathPrefix
 module.exports = {
     /* General Information */
     siteMetadata: {
-        siteUrl: config.siteUrl + pathPrefix
+        siteUrl: config.siteUrl + pathPrefix,
+        menuLinks: [
+            {
+                name: "home",
+                link: "/",
+                description: "#a8edea → #fed6e3",
+                height: 200
+            },
+            {
+                name: "page2",
+                link: "/page-2",
+                description: "#f5f7fa → #c3cfe2",
+                height: 400
+            }
+        ]
     },
     /* Plugins */
     plugins: [

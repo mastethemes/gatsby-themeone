@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react"
-import { useSpring, useChain, animated, useTransition, config } from "react-spring"
+import { useSpring, useChain, animated, useTrail, config } from "react-spring"
 import styled from "styled-components"
 
 const Burger = styled(animated.div)`
@@ -27,17 +27,16 @@ const Container = styled(animated.div)`
 `
 const Item = styled(animated.div)`
     width: 100%;
-    height: 100%;
-    background: white;
-    border-radius: 5px;
+    font-size: 36px;
+    padding: 20px;
     will-change: transform, opacity;
 `
 
-const Menu = () => {
+const Menu = ({ menu = [] }) => {
     const [open, setOpen] = useState(false)
 
     const springRef = useRef()
-    const { size, opacity, ...rest } = useSpring({
+    const { size, ...rest } = useSpring({
         ref: springRef,
         config: config.stiff,
         from: { size: "0%" },
@@ -45,13 +44,11 @@ const Menu = () => {
     })
 
     const transRef = useRef()
-    const transitions = useTransition(open ? data : [], item => item.name, {
-        ref: transRef,
-        unique: true,
-        trail: 400 / data.length,
-        from: { opacity: 0, transform: "scale(0)" },
-        enter: { opacity: 1, transform: "scale(1)" },
-        leave: { opacity: 0, transform: "scale(0)" }
+    const trail = useTrail(open ? menu.length : [], {
+        config: { mass: 5, tension: 2000, friction: 200 },
+        opacity: open ? 1 : 0,
+        x: open ? 20 : 0,
+        from: { opacity: 0, x: 0 }
     })
 
     // This will orchestrate the two animations above, comment the last arg and it creates a sequence
@@ -61,99 +58,20 @@ const Menu = () => {
         <>
             <Burger onClick={() => setOpen(opn => !opn)} />
             <Container style={{ ...rest, width: size }}>
-                {transitions.map(({ item, key, props }) => (
-                    <Item key={key} style={{ ...props, background: item.css }} />
-                ))}
+                {trail.map(({ x, ...rest2 }, index) => {
+                    <Item
+                        key={menu[index].name}
+                        style={{
+                            ...rest2,
+                            transform: x.interpolate(x => `translate3d(${x}px,0,0)`)
+                        }}
+                    >
+                        {menu[index].name}
+                    </Item>
+                })}
             </Container>
         </>
     )
 }
 
 export default Menu
-
-const data = [
-    {
-        name: "Rare Wind",
-        description: "#a8edea → #fed6e3",
-        css: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
-        height: 200
-    },
-    {
-        name: "Saint Petersburg",
-        description: "#f5f7fa → #c3cfe2",
-        css: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
-        height: 400
-    },
-    {
-        name: "Deep Blue",
-        description: "#e0c3fc → #8ec5fc",
-        css: "linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)",
-        height: 400
-    },
-    {
-        name: "Ripe Malinka",
-        description: "#f093fb → #f5576c",
-        css: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-        height: 400
-    },
-    {
-        name: "Perfect White",
-        description: "#fdfbfb → #ebedee",
-        css: "linear-gradient(135deg, #E3FDF5 0%, #FFE6FA 100%)",
-        height: 400
-    },
-    {
-        name: "Near Moon",
-        description: "#5ee7df → #b490ca",
-        css: "linear-gradient(135deg, #5ee7df 0%, #b490ca 100%)",
-        height: 400
-    },
-    {
-        name: "Wild Apple",
-        description: "#d299c2 → #fef9d7",
-        css: "linear-gradient(135deg, #d299c2 0%, #fef9d7 100%)",
-        height: 200
-    },
-    {
-        name: "Ladoga Bottom",
-        description: "#ebc0fd → #d9ded8",
-        css: "linear-gradient(135deg, #ebc0fd 0%, #d9ded8 100%)",
-        height: 400
-    },
-    {
-        name: "Sunny Morning",
-        description: "#f6d365 → #fda085",
-        css: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
-        height: 200
-    },
-    {
-        name: "Lemon Gate",
-        description: "#96fbc4 → #f9f586",
-        css: "linear-gradient(135deg, #96fbc4 0%, #f9f586 100%)",
-        height: 400
-    },
-    {
-        name: "Salt Mountain",
-        description: " #FFFEFF → #D7FFFE",
-        css: "linear-gradient(135deg, #FFFEFF 0%, #D7FFFE 100%)",
-        height: 200
-    },
-    {
-        name: "New York",
-        description: " #fff1eb → #ace0f9",
-        css: "linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%)",
-        height: 400
-    },
-    {
-        name: "Soft Grass",
-        description: " #c1dfc4 → #deecdd",
-        css: "linear-gradient(135deg, #c1dfc4 0%, #deecdd 100%)",
-        height: 400
-    },
-    {
-        name: "Japan Blush",
-        description: " #ddd6f3 → #faaca8",
-        css: "linear-gradient(135deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%)",
-        height: 200
-    }
-]
