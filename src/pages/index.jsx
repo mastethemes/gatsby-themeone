@@ -4,6 +4,7 @@ import styled from "styled-components"
 // Components
 import Layout from "../components/Layout"
 import { BigTitle, Subtitle } from "../elements/Titles"
+import ServiceSelection from "../components/ServiceSelection"
 
 import bg1 from "../images/bg_1.jpg"
 
@@ -22,6 +23,8 @@ const Index = () => (
                     I'm creating noice web experiences for the next generation of consumer-facing
                     companies.
                 </Subtitle>
+
+                <ServiceSelection />
             </Bg>
         </Layout>
     </>
