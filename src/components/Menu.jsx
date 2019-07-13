@@ -47,8 +47,8 @@ const Menu = ({ menu = [] }) => {
     const trail = useTrail(open ? menu.length : [], {
         config: { mass: 5, tension: 2000, friction: 200 },
         opacity: open ? 1 : 0,
-        x: open ? 20 : 0,
-        from: { opacity: 0, x: 0 }
+        x: open ? 100 : -600,
+        from: { opacity: 0, x: -600 }
     })
 
     // This will orchestrate the two animations above, comment the last arg and it creates a sequence
@@ -59,15 +59,17 @@ const Menu = ({ menu = [] }) => {
             <Burger onClick={() => setOpen(opn => !opn)} />
             <Container style={{ ...rest, width: size }}>
                 {trail.map(({ x, ...rest2 }, index) => {
-                    <Item
-                        key={menu[index].name}
-                        style={{
-                            ...rest2,
-                            transform: x.interpolate(x => `translate3d(${x}px,0,0)`)
-                        }}
-                    >
-                        {menu[index].name}
-                    </Item>
+                    return (
+                        <Item
+                            key={menu[index].name}
+                            style={{
+                                ...rest2,
+                                transform: x.interpolate(x => `translate3d(${x}px,0,0)`)
+                            }}
+                        >
+                            {menu[index].name}
+                        </Item>
+                    )
                 })}
             </Container>
         </>
