@@ -2,11 +2,13 @@
     {
         "name": "Santorini",
         "subName": "Island",
-        "url": "awesome-santorini"
+        "url": "awesome-santorini",
+        "next": "faboulous-rhodes"
     },
     {
         "name": "Rhodes",
         "subName": "Island",
-        "url": "faboulous-rhodes"
+        "url": "faboulous-rhodes",
+        "next": "Awesome-santorini"
     }
 ]

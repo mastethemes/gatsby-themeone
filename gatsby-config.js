@@ -68,6 +68,7 @@ module.exports = {
         "gatsby-plugin-offline",
         "gatsby-plugin-netlify",
         "gatsby-plugin-sass",
+        "gatsby-plugin-transition-link",
         {
             resolve: "gatsby-plugin-material-ui",
             options: {

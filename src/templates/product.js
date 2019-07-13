@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { Grid } from "@material-ui/core"
 import { ArrowForwardIos } from "@material-ui/icons"
 import sea from "../images/sea.jpg"
+import { CustomSpring, SpringLink } from "../components/react-spring-animation"
 
 // Components
 import Layout from "../components/Layout"
@@ -21,8 +22,6 @@ const ImgAnimated = styled.div`
     background-image: url(${sea});
 `
 
-const ProductWrapper = styled.div``
-
 const SideStroke = styled.div`
     color: white;
     width: 100%;
@@ -37,7 +36,10 @@ const Product = ({ data }) => {
     return (
         <>
             <Layout />
-            <div>
+            <CustomSpring>
+                <SpringLink to={`/${context.next}`}>
+                    {context.next.split("-")[1].toUpperCase()}
+                </SpringLink>
                 <ImgAnimated className="zoomin" />
                 <div>
                     <Grid container spacing={3} alignItems="center">
@@ -108,7 +110,7 @@ const Product = ({ data }) => {
                         </Grid>
                     </Grid>
                 </div>
-            </div>
+            </CustomSpring>
         </>
     )
 }
@@ -122,6 +124,7 @@ export const query = graphql`
                 name
                 subName
                 url
+                next
             }
         }
     }
